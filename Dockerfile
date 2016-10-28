@@ -1,4 +1,4 @@
-FROM born2data/anaconda:lastest
+FROM born2data/anaconda:latest
 
 ADD entrypoint.sh /entrypoint.sh
 
