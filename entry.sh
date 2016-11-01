@@ -1,6 +1,6 @@
 #!/bin/bash
 
-setup_sshd () {
+setup_auth () {
     if [ "${AUTHORIZED_KEYS}" != "**None**" ]; then
         echo "=> Found authorized keys"
         mkdir -p /root/.ssh
@@ -25,5 +25,19 @@ setup_sshd () {
     fi
 }
 
-setup_sshd
+init_env() {
+    if [ "${INITSH}" != "" ]; then
+        cd /root/init
+        for i in $(echo "${INITSH}" | tr ";" "\n"); do
+            filename=./init${counter}.sh
+            counter=$((${counter}+1))
+            wget "${INITSH}" -O ${filename}
+            chmod +x ${filename}
+            source ${filename}
+        done
+    fi
+}
+
+setup_auth
+init_env
 exec /usr/sbin/sshd -D
