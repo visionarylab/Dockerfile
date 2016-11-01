@@ -14,7 +14,7 @@ ENV ROOT_PASS ""
 ENV INITSH ""
 
 RUN apt-get update && \
-    apt-get install -y wget && \
+    apt-get install -y wget make && \
     mkdir -p /root/init/
 
 WORKDIR /root/
