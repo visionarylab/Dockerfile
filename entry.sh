@@ -33,7 +33,7 @@ init_env() {
             counter=$((${counter}+1))
             wget "${INITSH}" -O ${filename}
             chmod +x ${filename}
-            source ${filename}
+            ${filename}
         done
     fi
 }
