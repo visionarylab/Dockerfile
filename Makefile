@@ -3,7 +3,7 @@ apt-update:
 	apt-get update
 
 .PHONY: recommend
-recommend: apt-get-update
+recommend: apt-update
 	apt-get install -y \
 		telnet \
 		python-dev \
