@@ -1,4 +1,4 @@
-FROM tutum/centos:centos7
+FROM tutum/ubuntu:latest
 
 MAINTAINER lyc <imyikong@gmail.com>
 
@@ -13,8 +13,8 @@ EXPOSE 8083
 ENV ROOT_PASS ""
 ENV INITSH ""
 
-RUN yum makecache fast && \
-    yum install -y wget && \
+RUN apt-get update && \
+    apt-get install -y wget && \
     mkdir -p /root/init/
 
 WORKDIR /root/

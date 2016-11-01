@@ -1,10 +1,10 @@
-.PHONY: yum-update
-yum-update:
-	yum update
+.PHONY: apt-update
+apt-update:
+	apt-get update
 
 .PHONY: recommend
-recommend: yum-update
-	yum install -y \
+recommend: apt-get-update
+	apt-get install -y \
 		telnet \
 		python-dev \
 		python-setuptools \
@@ -13,7 +13,7 @@ recommend: yum-update
 
 .PHONY: golang
 golang:
-	yum install -y golang
+	apt-get install -y golang
 
 .PHONY: httpserver
 httpserver:
