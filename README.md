@@ -8,7 +8,7 @@ Google Chrome via VNC
 
  - Google Chrome, not Chromium, for the ease of Flash plugin management
  - on Xvfb
- - served by X11VNC (no password; assuming usage via SSH)
+ - served by X11VNC (${VNC_PASSWD})
 
 Must agree to [Google Chrome ToS][1] to use.
 
