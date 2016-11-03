@@ -1,12 +1,14 @@
 FROM ubuntu:14.04
 
-MAINTAINER Tomohisa Kusano <siomiz@gmail.com>
+MAINTAINER lyc <imyikong@gmail.com>
 
 ENV CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES 1024x768
+ENV VNC_PASSWD admin
 
 COPY copyables /
 
 ADD https://dl.google.com/linux/linux_signing_key.pub /tmp/
+ADD entry.sh /entry.sh
 
 RUN apt-key add /tmp/linux_signing_key.pub \
 	&& apt-get update \
@@ -31,4 +33,4 @@ VOLUME ["/home/chrome"]
 
 EXPOSE 5900
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/entry.sh"]
