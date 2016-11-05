@@ -23,4 +23,6 @@ RUN set -x && \
     apk del go git && \
     rm -rf /var/cache/apk/*
 
+EXPOSE 12948
+
 ENTRYPOINT ["/entry.sh"]
