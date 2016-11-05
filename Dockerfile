@@ -15,7 +15,7 @@ ENV SNDWND 128
 ENV RCVWND 1024
 ENV DSCP 0
 
-WORKDIR \
+WORKDIR /
 
 RUN set -x && \
     apk update && \
