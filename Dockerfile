@@ -2,7 +2,6 @@ FROM alpine
 
 MAINTAINER lyc <imyikong@gmail.com>
 
-WORKDIR \
 ADD entry.sh /entry.sh
 
 ENV DOCKER_DEBUG 0
@@ -15,6 +14,8 @@ ENV MTU 1350
 ENV SNDWND 128
 ENV RCVWND 1024
 ENV DSCP 0
+
+WORKDIR \
 
 RUN set -x && \
     apk update && \
