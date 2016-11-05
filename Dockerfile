@@ -19,7 +19,7 @@ ENV DSCP 0
 RUN set -x && \
     apk update && \
     apk add --no-cache go git && \
-    go get github.com/xtaci/kcptun/client && \
+    env GOPATH=/ go get github.com/xtaci/kcptun/client && \
     apk del go git && \
     rm -rf /var/cache/apk/*
 
