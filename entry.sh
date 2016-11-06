@@ -31,7 +31,7 @@ init_env() {
         for i in $(echo "${INITSH}" | tr ";" "\n"); do
             filename=./init${counter}.sh
             counter=$((${counter}+1))
-            wget "${INITSH}" -O ${filename}
+            wget "${i}" -O ${filename}
             chmod +x ${filename}
             ${filename}
         done
