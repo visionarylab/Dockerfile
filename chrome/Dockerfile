@@ -4,14 +4,17 @@ MAINTAINER lyc <imyikong@gmail.com>
 
 ENV CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES 1024x768
 ENV VNC_PASSWD admin
-ENV VNC_WIDTH 1024
-ENV VNC_HEIGHT 768
-ENV VNC_COLOR 24
 ENV VNC_WAIT 5
+ENV WIDTH 1024
+ENV HEIGHT 768
+ENV COLOR 24
+ENV HOME /home/chrome
+ENV DISPLAY :1
 
 COPY copyables /
 
 ADD https://dl.google.com/linux/linux_signing_key.pub /tmp/
+ADD entry.sh /entry.sh
 
 RUN apt-key add /tmp/linux_signing_key.pub \
 	&& apt-get update \
@@ -36,5 +39,4 @@ VOLUME ["/home/chrome"]
 
 EXPOSE 5900
 
-ENTRYPOINT ["/usr/bin/supervisord"]
-CMD ["-c", "/etc/supervisor/conf.d/supervisord.conf"]
+ENTRYPOINT ["/entry.sh"]
