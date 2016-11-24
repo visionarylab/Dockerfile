@@ -1,13 +1,15 @@
-FROM alpine
+FROM forumi0721/alpine-x64-base:latest
 
 MAINTAINER lyc <imyikong@gmail.com>
 
 ADD entry.sh /entry.sh
-ENV DOCKER_DEBUG 0
+ADD build.sh /build.sh
 
-WORKDIR /
-RUN set -x && \
-    apk update && \
-    rm -rf /var/cache/apk/*
+RUN ["/build.sh"]
+
+EXPOSE 80/tcp
+
+VOLUME ["/data"]
 
 ENTRYPOINT ["/entry.sh"]
+
