@@ -1,0 +1,14 @@
+#!/bin/bash
+
+PORT=${1:-8080}
+USER_NAME=${2}
+USER_PASSWD=${3:-${USER_NAME}}
+WEBDAV_SHARE=${4:-/data}
+
+docker run --rm \
+    -p ${PORT}:80 \
+    -v `pwd`:${WEBDAV_SHARE} \
+    -e WEBDAV_SHARE=${WEBDAV_SHARE} \
+    -e USER_PASSWD=${USER_PASSWD} \
+    -e USER_NAME=${USER_NAME} \
+    mrlyc/webdav

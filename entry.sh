@@ -4,6 +4,8 @@ if [ "${DOCKER_DEBUG}" == "1" ]; then
     set -x
 fi
 
+USER_NAME=${USER_NAME:-sharing}
+WEBDAV_SHARE=${WEBDAV_SHARE:-/data}
 if [ "${USER_PASSWD}" == "" ]; then
     USER_PASSWD=${RANDOM}
     echo "random password:" ${USER_PASSWD}
