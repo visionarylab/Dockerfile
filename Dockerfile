@@ -5,6 +5,10 @@ MAINTAINER lyc <imyikong@gmail.com>
 ADD entry.sh /entry.sh
 ADD build.sh /build.sh
 
+ENV USER_NAME sharing
+ENV USER_PASSWD ""
+ENV WEBDAV_SHARE /data
+
 RUN ["/build.sh"]
 
 EXPOSE 80/tcp

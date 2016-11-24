@@ -138,10 +138,8 @@ LogLevel warn
 #IncludeOptional /etc/apache2/conf.d/*.conf
 EOF
 
-echo "sharing:webdav:$(echo -n "sharing:webdav:passwd" | md5sum | cut -d ' ' -f 1)" >> /etc/apache2/htpasswd
-
 mkdir -p /data
 
 mkdir -p /usr/local/etc
-cp -a /etc/apache2/httpd.conf /etc/apache2/htpasswd /usr/local/etc/
+cp -a /etc/apache2/httpd.conf /usr/local/etc/
 
