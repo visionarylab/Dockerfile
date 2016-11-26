@@ -13,8 +13,7 @@ unzip opengrok.tar.gz.zip
 tar -zxvf opengrok-*.tar.gz -C /var
 
 mv /var/opengrok* /var/opengrok
-export PATH=/var/opengrok/bin:$PATH
-OpenGrok deploy
+/var/opengrok/bin/OpenGrok deploy
 
 mkdir -p /var/opengrok/src
 

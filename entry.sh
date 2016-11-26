@@ -21,7 +21,7 @@ get_tar_source() {
         wget -O /tmp/source.tar $i
         tar -C "${SOURCE_DIR}" -xvf /tmp/source.tar
     done
-    rm /tmp/source.tar
+    [ -e /tmp/source.tar ] && rm /tmp/source.tar
 }
 
 get_tgz_source() {
@@ -29,7 +29,7 @@ get_tgz_source() {
         wget -O /tmp/source.tar.gz $i
         tar -C "${SOURCE_DIR}" -xvf /tmp/source.tar.gz
     done
-    rm /tmp/source.tar.gz
+    [ -e /tmp/source.tar.gz ] && rm /tmp/source.tar.gz
 }
 
 get_zip_source() {
@@ -37,7 +37,7 @@ get_zip_source() {
         wget -O /tmp/source.zip $i
         unzip -d "${SOURCE_DIR}" /tmp/source.zip
     done
-    rm /tmp/source.zip
+    [ -e /tmp/source.zip ] && rm /tmp/source.zip
 }
 
 get_git_source &
@@ -47,6 +47,6 @@ get_zip_source &
 
 while true; do
     echo "indexing"
-    OpenGrok index "${SOURCE_DIR}"
+    /var/opengrok/bin/OpenGrok index "${SOURCE_DIR}"
     sleep "${INDEX_DELAY}"
 done
