@@ -4,6 +4,7 @@ if [[ "${DOCKER_DEBUG}" == "1" ]]; then
     set -x
 fi
 
+rm -rf /var/opengrok/src
 mkdir -p "${SOURCE_DIR}"
 ln -s "${SOURCE_DIR}" /var/opengrok/src
 
