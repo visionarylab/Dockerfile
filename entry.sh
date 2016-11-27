@@ -8,16 +8,15 @@ rm -rf /var/opengrok/src
 mkdir -p "${SOURCE_DIR}"
 ln -s "${SOURCE_DIR}" /var/opengrok/src
 
+rm -rf /var/opengrok/data
+mkdir -p "${DATA_DIR}"
+ln -s "${DATA_DIR}" /var/opengrok/data
+
+/opt/tomcat/bin/catalina.sh start
+
 indexing_source() {
     echo "indexing"
     /var/opengrok/bin/OpenGrok index "${SOURCE_DIR}"
-}
-
-indexing_git_source() {
-    for i in $(echo "${GIT_SOURCE}" | tr ";" "\n"); do
-        git clone --depth=1 "$i" "${SOURCE_DIR}"
-        indexing_source
-    done
 }
 
 indexing_tar_source() {
@@ -47,19 +46,12 @@ indexing_zip_source() {
     [ -e /tmp/source.zip ] && rm /tmp/source.zip
 }
 
-init_source() {
-    indexing_source
-    indexing_git_source
-    indexing_tar_source
-    indexing_tgz_source
-    indexing_zip_source
-}
+indexing_source
+indexing_git_source
+indexing_tar_source
+indexing_tgz_source
+indexing_zip_source
 
-
-if [ "${ASYNC_MODE}" = "0" ]; then
-    init_source
-else
-    init_source &
-fi
-
-/opt/tomcat/bin/catalina.sh run
+while true; do
+    sleep "${INDEXING_DELAY}"
+done
