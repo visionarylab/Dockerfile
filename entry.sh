@@ -16,7 +16,7 @@ ln -s "${DATA_DIR}" /var/opengrok/data
 
 indexing_source() {
     echo "indexing"
-    /var/opengrok/bin/OpenGrok index "${SOURCE_DIR}"
+    /var/opengrok/bin/OpenGrok update
 }
 
 indexing_git_source() {
@@ -53,13 +53,19 @@ indexing_zip_source() {
     [ -e /tmp/source.zip ] && rm /tmp/source.zip
 }
 
-indexing_source
+interval_indexing() {
+    while true; do
+        sleep "${INDEXING_DELAY}"
+        indexing_source
+    done
+}
+
+/var/opengrok/bin/OpenGrok index "${SOURCE_DIR}"
 indexing_git_source
 indexing_tar_source
 indexing_tgz_source
 indexing_zip_source
+interval_indexing &
 
-while true; do
-    sleep "${INDEXING_DELAY}"
-    indexing_source
-done
+tail -f /var/opengrok/log/opengrok0.0.log
+

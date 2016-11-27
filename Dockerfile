@@ -5,10 +5,13 @@ MAINTAINER lyc <imyikong@gmail.com>
 ADD entry.sh /entry.sh
 ADD build.sh /build.sh
 
+ENV JAVA_OPTS "-Xmx512m -Xms128m"
+
 ENV DOCKER_DEBUG 0
 ENV SOURCE_DIR /opengrok/src
 ENV DATA_DIR /opengrok/data
-ENV INDEXING_DELAY 300
+ENV INDEXING_DELAY 60
+
 ENV GIT_SOURCE ""
 ENV TAR_SOURCE ""
 ENV TGZ_SOURCE ""
