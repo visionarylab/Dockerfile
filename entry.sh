@@ -19,6 +19,13 @@ indexing_source() {
     /var/opengrok/bin/OpenGrok index "${SOURCE_DIR}"
 }
 
+indexing_git_source() {
+    for i in $(echo "${GIT_SOURCE}" | tr ";" "\n"); do
+        git clone --depth=1 "$i" "${SOURCE_DIR}"
+        indexing_source
+    done
+}
+
 indexing_tar_source() {
     for i in $(echo "${TAR_SOURCE}" | tr ";" "\n"); do
         wget -O /tmp/source.tar $i
