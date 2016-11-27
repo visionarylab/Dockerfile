@@ -17,6 +17,9 @@ mv /var/opengrok* /var/opengrok
 
 mkdir -p /var/opengrok/src
 
+mkdir -p /opt/tomcat/webapps/ROOT/
+mv /index.html /opt/tomcat/webapps/ROOT/
+
 rm opengrok*
 
 rm -rf /var/cache/apk/*

@@ -4,6 +4,7 @@ MAINTAINER lyc <imyikong@gmail.com>
 
 ADD entry.sh /entry.sh
 ADD build.sh /build.sh
+ADD index.html /index.html
 
 ENV JAVA_OPTS "-Xmx512m -Xms128m"
 
