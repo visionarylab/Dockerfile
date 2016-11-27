@@ -61,4 +61,5 @@ indexing_zip_source
 
 while true; do
     sleep "${INDEXING_DELAY}"
+    indexing_source
 done
