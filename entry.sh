@@ -16,7 +16,7 @@ ln -s "${DATA_DIR}" /var/opengrok/data
 
 indexing_source() {
     echo "indexing"
-    /var/opengrok/bin/OpenGrok update
+    /var/opengrok/bin/OpenGrok update "${SOURCE_DIR}"
 }
 
 indexing_git_source() {
@@ -68,4 +68,3 @@ indexing_zip_source
 interval_indexing &
 
 tail -f /var/opengrok/log/opengrok0.0.log
-
