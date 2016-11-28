@@ -60,6 +60,7 @@ interval_indexing() {
     done
 }
 
+ls "${SOURCE_DIR}"
 /var/opengrok/bin/OpenGrok index "${SOURCE_DIR}"
 indexing_git_source
 indexing_tar_source
