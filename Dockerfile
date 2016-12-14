@@ -1,25 +1,31 @@
-FROM tutum/ubuntu:latest
+FROM mrlyc/ubuntu-ssh:latest
 
 MAINTAINER lyc <imyikong@gmail.com>
 
-EXPOSE 80
-EXPOSE 443
 EXPOSE 22
 EXPOSE 8080
-EXPOSE 8081
-EXPOSE 8082
-EXPOSE 8083
 
+ADD build.sh /build.sh
+ADD entry.sh /entry.sh
+
+ENV DOCKER_DEBUG 0
+ENV AUTHORIZED_KEYS ""
 ENV ROOT_PASS ""
 ENV INITSH ""
 
-RUN apt-get update && \
-    apt-get install -y wget make && \
-    mkdir -p /root/init/
+ENV MINICRONSH ""
+ENV PORT 8080
+ENV SERVER_API_HOST "0.0.0.0"
+ENV SERVER_SESSION_SECRET imyikong
+ENV DB_TYPE sqlite
+ENV DB_HOST ""
+ENV DB_NAME ""
+ENV DB_USER ""
+ENV DB_PASSWORD ""
 
-WORKDIR /root/
+EXPOSE 8080
 
-ADD entry.sh /entry.sh
-ADD Makefile /root/init/Makefile
+WORKDIR /
+RUN ["/build.sh"]
 
 ENTRYPOINT ["/entry.sh"]
